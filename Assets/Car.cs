@@ -23,7 +23,7 @@ public class Car : MonoBehaviour {
 
     Vector2 PositionToVector2D(Position loc)
     {
-        return new Vector2(loc.X, loc.Y);
+        return new Vector2(loc.X + 0.5f, loc.Y + 0.5f);
     }
 	
 	// Update is called once per frame
@@ -43,8 +43,6 @@ public class Car : MonoBehaviour {
                 {
                     // set to next waypoint
                     target = PositionToVector2D(path[waypoint]);
-                    target.x += 0.5f;
-                    target.y += 0.5f;
                 }
                 else
                 {
@@ -58,6 +56,8 @@ public class Car : MonoBehaviour {
                 target.y - transform.position.y);
             
             Vector2 displacement = direction.normalized * Speed;
+
+            transform.Rotate(0, 0, Vector2.Angle(Util.DegreeToVector2(transform.eulerAngles.z+90), direction));
 
             transform.position = new Vector3(
                 transform.position.x + displacement.x,

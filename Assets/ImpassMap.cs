@@ -35,7 +35,8 @@ public class ImpassMap : MonoBehaviour {
                 start.Y - cb.yMin),
             new Position(
                 end.X - cb.xMin,
-                end.Y - cb.yMin));
+                end.Y - cb.yMin),
+            MovementPatterns.LateralOnly);
 
         Position[] adjustedPath = new Position[path.Length];
         for (int i = 0; i < path.Length; i++)
