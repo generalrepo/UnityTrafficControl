@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets;
 using RoyT.AStar;
+using UnityEngine.Tilemaps;
 
-public class Car : MonoBehaviour {
-
+public class Car : MonoBehaviour
+{
     float Speed = 0.02f;
     bool HasCollided = false;
     Vector2 target;
     Position[] path;
     int waypoint;
 
+    private Tilemap trafficLights;
+
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         GameObject tileMap = GameObject.FindWithTag("RoadTile");
         ImpassMap impassMap = tileMap.GetComponent<ImpassMap>();
+
         path = impassMap.GetPath(new Position((int)transform.position.x, (int)transform.position.y), new Position(5, -1));
         waypoint = 0;
         target = PositionToVector2D(path[waypoint]);
@@ -27,8 +32,8 @@ public class Car : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-
+	void Update ()
+    {
         if (path == null)
         {
             Start();
@@ -69,5 +74,10 @@ public class Car : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col)
     {
         HasCollided = true;
+    }
+
+    private void OnMouseDown()
+    {
+        Debug.Log("clicked car");
     }
 }
