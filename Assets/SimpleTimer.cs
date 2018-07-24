@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class SimpleTimer : MonoBehaviour
 {
     public bool isRacing;
+    public int scoreValue;
     Text txt;
 
     void Awake()
