@@ -7,31 +7,13 @@ using RoyT.AStar;
 public class ImpassMap : MonoBehaviour {
     
     private Tilemap ground;
-    public RoyT.AStar.Grid grid = new RoyT.AStar.Grid(12, 10, 1);
-
-<<<<<<< HEAD
-    // Use this for initialization
-    void Start () {
-        ground = this.GetComponent<Tilemap>();
-        var cb = ground.cellBounds;
-        for (int x = cb.xMin; x < cb.xMax; x++)
-        {
-            for(int y = cb.yMin; y < cb.yMax; y++)
-            {
-                TileBase tile = ground.GetTile(new Vector3Int(x, y, 0));
-                if (tile == null)
-                {
-                    grid.BlockCell(new Position(x- cb.xMin, y - cb.yMin));
-                }
-            }
-        }
-=======
     private bool initialized = false;
+    public RoyT.AStar.Grid grid = new RoyT.AStar.Grid(12, 10, 1);
+    
 
     void Start ()
     {
         this.Initialize();
->>>>>>> master
     }
 
     public Position[] GetPath(Position start, Position end)
