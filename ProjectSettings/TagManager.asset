@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - RoadTile
+  - House
   layers:
   - Default
   - TransparentFX

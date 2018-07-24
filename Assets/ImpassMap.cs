@@ -9,7 +9,7 @@ public class ImpassMap : MonoBehaviour {
     private Tilemap ground;
     public RoyT.AStar.Grid grid = new RoyT.AStar.Grid(12, 10, 1);
 
-        // Use this for initialization
+    // Use this for initialization
     void Start () {
         ground = this.GetComponent<Tilemap>();
         var cb = ground.cellBounds;
