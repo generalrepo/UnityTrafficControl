@@ -6,17 +6,19 @@ using RoyT.AStar;
 
 public class Car : MonoBehaviour {
 
+    public const float turningRate = 5f    ; // set this to 180 for immediate turns
+    public const float MaxSpeed = 0.05f;
     float Speed = 0.02f;
     bool HasCollided = false;
     Vector2 target;
     Vector2 currentDirection;
-    float MaxSpeed = 0.05f;
     Position[] path;
     int waypoint;
-    float turningRate = 5f; // set this to 180 for immediate turns
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
+        currentDirection = Util.DegreeToVector2(transform.eulerAngles.z + 90);
     }
 
     private void GetPath()
@@ -74,12 +76,21 @@ public class Car : MonoBehaviour {
 
     private void Steering(float dt)
     {
-        currentDirection = Util.DegreeToVector2(transform.eulerAngles.z + 90);
         Vector2 desiredDirection = new Vector2(
             target.x - transform.position.x,
             target.y - transform.position.y);
-        var turningAngle = Vector2.Angle(currentDirection, desiredDirection);
-        transform.Rotate(0, 0, (turningAngle > turningRate) ? turningRate : turningAngle);
+        var desiredTurningAngle = Vector2.SignedAngle(currentDirection, desiredDirection);
+        float turningAngle = 0;
+        if (desiredTurningAngle > 0)
+        {
+            turningAngle = Mathf.Min(desiredTurningAngle, turningRate);
+        }
+        else
+        {
+            turningAngle = Mathf.Max(desiredTurningAngle, -turningRate);
+        }
+        transform.Rotate(0, 0, turningAngle);
+        currentDirection = Util.DegreeToVector2(transform.eulerAngles.z + 90);
     }
 
     private void MoveForward(float dt)
