@@ -18,5 +18,4 @@ public class PlayerScore : MonoBehaviour {
 	void UpdateScore () {
         scoreText = "Score: " + score;
 	}
-    
 }
