@@ -112,10 +112,23 @@ public class Car : MonoBehaviour {
     {
         Vector2 currentDirection = Util.DegreeToVector2(transform.eulerAngles.z + 90);
         Velocity = currentDirection.normalized * Speed;
-        transform.position = new Vector3(
+
+        var predictedPosition = new Vector3(
             transform.position.x + Velocity.x,
             transform.position.y + Velocity.y,
             transform.position.z);
+
+        var trafficLights = GameObject.FindWithTag("TrafficLightTile").GetComponent<TrafficLightMap>();
+        
+        var lightState = trafficLights.GetTrafficLightStatus(predictedPosition);
+
+        if (lightState == null)
+        {
+            transform.position = new Vector3(
+                transform.position.x + Velocity.x,
+                transform.position.y + Velocity.y,
+                transform.position.z);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
