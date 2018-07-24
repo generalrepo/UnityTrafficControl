@@ -6,19 +6,24 @@ using RoyT.AStar;
 
 public class Car : MonoBehaviour {
 
-    public const float turningRate = 5f    ; // set this to 180 for immediate turns
+    public const float turningRate = 10f    ; // set this to 180 for immediate turns
     public const float MaxSpeed = 0.05f;
+    public const float Acceration = 0.5f;
+    public const float Deacceration = 0.5f;
+    public const float WallDistance = 0.5f;
+
+    Vector2 Velocity;
+    Vector2 desiredDirection;
     float Speed = 0.02f;
+
     bool HasCollided = false;
     Vector2 target;
-    Vector2 currentDirection;
     Position[] path;
     int waypoint;
 
 	// Use this for initialization
 	void Start ()
     {
-        currentDirection = Util.DegreeToVector2(transform.eulerAngles.z + 90);
     }
 
     private void GetPath()
@@ -76,9 +81,20 @@ public class Car : MonoBehaviour {
 
     private void Steering(float dt)
     {
-        Vector2 desiredDirection = new Vector2(
+        TargetFollowing(dt);
+        Turn(dt);
+    }
+
+    private void TargetFollowing(float dt)
+    {
+        desiredDirection = new Vector2(
             target.x - transform.position.x,
             target.y - transform.position.y);
+    }
+
+    private void Turn(float dt)
+    {
+        Vector2 currentDirection = Util.DegreeToVector2(transform.eulerAngles.z + 90);
         var desiredTurningAngle = Vector2.SignedAngle(currentDirection, desiredDirection);
         float turningAngle = 0;
         if (desiredTurningAngle > 0)
@@ -90,15 +106,15 @@ public class Car : MonoBehaviour {
             turningAngle = Mathf.Max(desiredTurningAngle, -turningRate);
         }
         transform.Rotate(0, 0, turningAngle);
-        currentDirection = Util.DegreeToVector2(transform.eulerAngles.z + 90);
     }
 
     private void MoveForward(float dt)
     {
-        Vector2 displacement = currentDirection.normalized * Speed;
+        Vector2 currentDirection = Util.DegreeToVector2(transform.eulerAngles.z + 90);
+        Velocity = currentDirection.normalized * Speed;
         transform.position = new Vector3(
-            transform.position.x + displacement.x,
-            transform.position.y + displacement.y,
+            transform.position.x + Velocity.x,
+            transform.position.y + Velocity.y,
             transform.position.z);
     }
 
