@@ -57,7 +57,7 @@ public class Car : MonoBehaviour {
     private void UpdateWaypoint()
     {
         // check if waypoint reached
-        if (Vector2.Distance(target, transform.position) < 0.02)
+        if (Vector2.Distance(target, transform.position) < 0.1)
         {
             waypoint++;
             if (waypoint < path.Length)
@@ -112,10 +112,23 @@ public class Car : MonoBehaviour {
     {
         Vector2 currentDirection = Util.DegreeToVector2(transform.eulerAngles.z + 90);
         Velocity = currentDirection.normalized * Speed;
-        transform.position = new Vector3(
-            transform.position.x + Velocity.x,
-            transform.position.y + Velocity.y,
+
+        var predictedPosition = new Vector3(
+            transform.position.x + 2 * Velocity.x,
+            transform.position.y + 2 * Velocity.y,
             transform.position.z);
+
+        var trafficLights = GameObject.FindWithTag("TrafficLightTile").GetComponent<TrafficLightMap>();
+        
+        var lightState = trafficLights.GetTrafficLightStatus(predictedPosition);
+
+        if (lightState == null || lightState == TrafficLightMap.TrafficLightState.Green)
+        {
+            transform.position = new Vector3(
+                transform.position.x + Velocity.x,
+                transform.position.y + Velocity.y,
+                transform.position.z);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)

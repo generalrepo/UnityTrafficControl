@@ -19,19 +19,23 @@ public class TrafficLightMap : MonoBehaviour
     {
         var o = GameObject.FindWithTag("TrafficLightTile");
         var trafficLights = o.GetComponent<Tilemap>();
-        Camera cam = Camera.main;
 
-        Vector3 point = cam.ScreenToWorldPoint(worldLocation);
+        Vector3Int cameraCell = trafficLights.WorldToCell(worldLocation);
 
-        Vector3Int cameraCell = trafficLights.WorldToCell(point);
-        var tile = trafficLights.GetTile(cameraCell);
-
-        if (tile == null)
+        // search nearby cells for proximity
+        for (int i = -1; i <= 1; ++i)
         {
-            return null;
+            for (int j = -1; j <= 1; ++j)
+            {
+                TileBase tileBase = trafficLights.GetTile(new Vector3Int(cameraCell.x + i, cameraCell.y + j, cameraCell.z));
+                if (tileBase != null)
+                {
+                    return tileBase == this.redLight ? TrafficLightState.Red : TrafficLightState.Green;
+                }
+            }
         }
 
-        return tile == this.redLight ? TrafficLightState.Red : TrafficLightState.Green;
+        return null;
     }
 
     // Use this for initialization
