@@ -71,7 +71,10 @@
     <Compile Include="Assets\AStar\Position.cs" />
     <Compile Include="Assets\Car.cs" />
     <Compile Include="Assets\ImpassMap.cs" />
+    <Compile Include="Assets\PlayerScore.cs" />
+    <Compile Include="Assets\Restart.cs" />
     <Compile Include="Assets\SimpleTimer.cs" />
+    <Compile Include="Assets\TrafficLightMap.cs" />
     <Compile Include="Assets\Util.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/ryanoc/Documents/GitHub/UnityTrafficControl/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
