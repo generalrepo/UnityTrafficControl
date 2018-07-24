@@ -14,7 +14,7 @@ public class Car : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        GameObject tileMap = GameObject.FindWithTag("Tilemap");
+        GameObject tileMap = GameObject.FindWithTag("RoadTile");
         ImpassMap impassMap = tileMap.GetComponent<ImpassMap>();
         path = impassMap.GetPath(new Position((int)transform.position.x, (int)transform.position.y), new Position(5, -1));
         waypoint = 0;

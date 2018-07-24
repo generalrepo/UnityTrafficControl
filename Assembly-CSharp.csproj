@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{B79B375B-2CD9-629A-9387-77DEE549D835}</ProjectGuid>
+    <ProjectGuid>{E86DA85F-54A9-9D38-A339-B40D75FE38BB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -73,16 +73,16 @@
     <Compile Include="Assets\ImpassMap.cs" />
     <Compile Include="Assets\Util.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/frcheng/Documents/GitHub/TrafficControl/TrafficControl/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/frcheng/Documents/GitHub/UnityTrafficControl/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/frcheng/Documents/GitHub/TrafficControl/TrafficControl/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/frcheng/Documents/GitHub/UnityTrafficControl/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/frcheng/Documents/GitHub/TrafficControl/TrafficControl/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/frcheng/Documents/GitHub/UnityTrafficControl/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/frcheng/Documents/GitHub/TrafficControl/TrafficControl/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/frcheng/Documents/GitHub/UnityTrafficControl/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
