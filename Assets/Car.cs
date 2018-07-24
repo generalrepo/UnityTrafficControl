@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets;
 using RoyT.AStar;
+using System;
 
 public class Car : MonoBehaviour {
 
@@ -113,16 +114,21 @@ public class Car : MonoBehaviour {
         Vector2 currentDirection = Util.DegreeToVector2(transform.eulerAngles.z + 90);
         Velocity = currentDirection.normalized * Speed;
 
+        bool horizontal = Math.Abs(currentDirection.x) > Math.Abs(currentDirection.y);
+
+        const float stoppingDistance = 1.5f;
         var predictedPosition = new Vector3(
-            transform.position.x + 2 * Velocity.x,
-            transform.position.y + 2 * Velocity.y,
+            transform.position.x + stoppingDistance * currentDirection.x,
+            transform.position.y + stoppingDistance * currentDirection.y,
             transform.position.z);
 
         var trafficLights = GameObject.FindWithTag("TrafficLightTile").GetComponent<TrafficLightMap>();
         
         var lightState = trafficLights.GetTrafficLightStatus(predictedPosition);
 
-        if (lightState == null || lightState == TrafficLightMap.TrafficLightState.Green)
+        if (lightState == null ||
+            (horizontal && lightState == TrafficLightMap.TrafficLightState.Green) ||
+            (!horizontal && lightState == TrafficLightMap.TrafficLightState.Red))
         {
             transform.position = new Vector3(
                 transform.position.x + Velocity.x,
