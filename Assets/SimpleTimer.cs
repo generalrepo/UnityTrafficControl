@@ -5,11 +5,14 @@ using UnityEngine.UI;
 public class SimpleTimer : MonoBehaviour
 {
     public bool isRacing;
+    private string testValue;
     Text txt;
+
 
     void Awake()
     {
         txt = GetComponent<Text>();
+
     }
 
     void Start()
@@ -20,11 +23,10 @@ public class SimpleTimer : MonoBehaviour
 
     void Update()
     {
-        if (isRacing &&
-            txt != null)
+        if (isRacing)
         {
-            var testHoldValue = Time.time.ToString("#");
-            txt.text = testHoldValue;
+            testValue = Time.timeSinceLevelLoad.ToString("#");
+            txt.text = testValue;
         }
     }
 }
