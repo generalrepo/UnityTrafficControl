@@ -3,17 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets;
 using RoyT.AStar;
-using UnityEngine.Tilemaps;
 
-<<<<<<< HEAD
-public class Car : MonoBehaviour
-{
-=======
 public class Car : MonoBehaviour {
 
     public const float turningRate = 5f    ; // set this to 180 for immediate turns
     public const float MaxSpeed = 0.05f;
->>>>>>> master
     float Speed = 0.02f;
     bool HasCollided = false;
     Vector2 target;
@@ -21,17 +15,9 @@ public class Car : MonoBehaviour {
     Position[] path;
     int waypoint;
 
-    private Tilemap trafficLights;
-
 	// Use this for initialization
 	void Start ()
     {
-<<<<<<< HEAD
-        GameObject tileMap = GameObject.FindWithTag("RoadTile");
-        ImpassMap impassMap = tileMap.GetComponent<ImpassMap>();
-
-        path = impassMap.GetPath(new Position((int)transform.position.x, (int)transform.position.y), new Position(5, -1));
-=======
         currentDirection = Util.DegreeToVector2(transform.eulerAngles.z + 90);
     }
 
@@ -40,7 +26,6 @@ public class Car : MonoBehaviour {
         GameObject tileMap = GameObject.FindWithTag("RoadTile");
         ImpassMap impassMap = tileMap.GetComponent<ImpassMap>();
         path = impassMap.GetPath(new Position((int)(transform.position.x - 0.5f), (int)(transform.position.y - 0.5f)), new Position(5, -1));
->>>>>>> master
         waypoint = 0;
         target = PositionToVector2D(path[waypoint]);
     }
@@ -51,13 +36,8 @@ public class Car : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-<<<<<<< HEAD
-	void Update ()
-    {
-=======
 	void Update () {
         
->>>>>>> master
         if (path == null)
         {
             GetPath();
@@ -125,10 +105,5 @@ public class Car : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col)
     {
         HasCollided = true;
-    }
-
-    private void OnMouseDown()
-    {
-        Debug.Log("clicked car");
     }
 }
