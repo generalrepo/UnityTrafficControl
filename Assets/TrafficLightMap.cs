@@ -20,20 +20,30 @@ public class TrafficLightMap : MonoBehaviour
         var o = GameObject.FindWithTag("TrafficLightTile");
         var trafficLights = o.GetComponent<Tilemap>();
 
-        Vector3Int cameraCell = trafficLights.WorldToCell(worldLocation);
+        const float approximateTrafficLight = 0.4f;
+        const float step = 0.1f;
 
-        // search nearby cells for proximity
-        for (int i = -1; i <= 1; ++i)
+        for (float i = -approximateTrafficLight; i < approximateTrafficLight; i += step)
         {
-            for (int j = -1; j <= 1; ++j)
+            for (float j = -approximateTrafficLight; j < approximateTrafficLight; j += step)
             {
-                TileBase tileBase = trafficLights.GetTile(new Vector3Int(cameraCell.x + i, cameraCell.y + j, cameraCell.z));
+                Vector3Int trafficCell = trafficLights.WorldToCell(new Vector3(worldLocation.x + i, worldLocation.y + j, worldLocation.z));
+
+                TileBase tileBase = trafficLights.GetTile(trafficCell);
                 if (tileBase != null)
                 {
                     return tileBase == this.redLight ? TrafficLightState.Red : TrafficLightState.Green;
                 }
             }
         }
+
+        /*
+        TileBase tileBase = trafficLights.GetTile(trafficCell);
+        if (tileBase != null)
+        {
+            return tileBase == this.redLight ? TrafficLightState.Red : TrafficLightState.Green;
+        }
+        */
 
         return null;
     }
