@@ -29,10 +29,14 @@ public class Car : MonoBehaviour {
     private void GetPath()
     {
         GameObject tileMap = GameObject.FindWithTag("RoadTile");
-        ImpassMap impassMap = tileMap.GetComponent<ImpassMap>();
-        path = impassMap.GetPath(new Position((int)(transform.position.x - 0.5f), (int)(transform.position.y - 0.5f)), new Position(5, -1));
-        waypoint = 0;
-        target = PositionToVector2D(path[waypoint]);
+
+        if (tileMap != null)
+        {
+            ImpassMap impassMap = tileMap.GetComponent<ImpassMap>();
+            path = impassMap.GetPath(new Position((int)(transform.position.x - 0.5f), (int)(transform.position.y - 0.5f)), new Position(5, -1));
+            waypoint = 0;
+            target = PositionToVector2D(path[waypoint]);
+        }
     }
 
     Vector2 PositionToVector2D(Position loc)
