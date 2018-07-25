@@ -27,11 +27,11 @@ public class Car : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        destination = new Position(3, 6);
     }
 
-    public void SetDestination(Position position)
+    public void SetDestination(Position dest)
     {
+        this.destination = dest;
     }
 
     private void GetPath()
@@ -82,6 +82,12 @@ public class Car : MonoBehaviour {
                 // Remove Car
             }
 
+        }
+
+        const float targetDistanceFromTarget = 0.7f;
+        if (Vector2.Distance(new Vector2(destination.X, destination.Y), new Vector2(transform.position.x, transform.position.y)) < targetDistanceFromTarget)
+        {
+            Destroy(gameObject);
         }
     }
 
