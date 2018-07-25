@@ -7,7 +7,7 @@ using RoyT.AStar;
 public class ImpassMap : MonoBehaviour {
     
     private Tilemap ground;
-    public RoyT.AStar.Grid grid = new RoyT.AStar.Grid(12, 10, 1);
+    public RoyT.AStar.Grid grid = new RoyT.AStar.Grid(15, 15, 1);
 
     private bool initialized = false;
 

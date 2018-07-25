@@ -40,7 +40,7 @@ public class Car : MonoBehaviour {
         if (tileMap != null)
         {
             ImpassMap impassMap = tileMap.GetComponent<ImpassMap>();
-            path = impassMap.GetPath(new Position((int)(transform.position.x - 0.5f), (int)(transform.position.y - 0.5f)), new Position(5, -1));
+            path = impassMap.GetPath(new Position((int)(transform.position.x - 0.5f), (int)(transform.position.y - 0.5f)), destination);
             waypoint = 0;
             target = PositionToVector2D(path[waypoint]);
         }

@@ -20,7 +20,7 @@ public class TrafficLightMap : MonoBehaviour
         var o = GameObject.FindWithTag("TrafficLightTile");
         var trafficLights = o.GetComponent<Tilemap>();
 
-        const float approximateTrafficLight = 0.4f;
+        const float approximateTrafficLight = 0.2f;
         const float step = 0.1f;
 
         for (float i = -approximateTrafficLight; i < approximateTrafficLight; i += step)
