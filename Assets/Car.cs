@@ -88,6 +88,18 @@ public class Car : MonoBehaviour {
         if (Vector2.Distance(new Vector2(destination.X, destination.Y), new Vector2(transform.position.x, transform.position.y)) < targetDistanceFromTarget)
         {
             Destroy(gameObject);
+
+            GameObject scoreObject = GameObject.FindWithTag("Score");
+
+            if (scoreObject != null)
+            {
+                var scoreScript = scoreObject.GetComponent<PlayerScore>();
+
+                if (scoreScript)
+                {
+                    scoreScript.IncrementScore();
+                }
+            }
         }
     }
 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - RoadTile
   - TrafficLightTile
+  - Score
   layers:
   - Default
   - TransparentFX

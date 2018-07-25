@@ -5,9 +5,13 @@ using UnityEngine.UI;
 public class PlayerScore : MonoBehaviour
 {
     public bool isRacing;
-    private int testValue;
+    private int score = 0;
     Text txt;
-
+    
+    public void IncrementScore()
+    {
+        this.score++;
+    }
 
     void Awake()
     {
@@ -19,6 +23,7 @@ public class PlayerScore : MonoBehaviour
     {
         isRacing = true;
         txt = GetComponent<Text>();
+        this.score = 0;
 
     }
 
@@ -26,8 +31,7 @@ public class PlayerScore : MonoBehaviour
     {
         if (isRacing)
         {
-            testValue = testValue + 5;
-            txt.text = testValue.ToString();
+            txt.text = score.ToString();
         }
     }
 }
