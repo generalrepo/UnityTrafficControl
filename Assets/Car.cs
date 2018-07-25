@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets;
 using RoyT.AStar;
+using UnityEngine.Tilemaps;
 
 public class Car : MonoBehaviour {
 
@@ -17,12 +18,18 @@ public class Car : MonoBehaviour {
     float Speed = 0.02f;
 
     bool HasCollided = false;
+    Position destination;
     Vector2 target;
     Position[] path;
     int waypoint;
 
 	// Use this for initialization
 	void Start ()
+    {
+        destination = new Position(3, 6);
+    }
+
+    public void SetDestination(Position position)
     {
     }
 
@@ -43,10 +50,10 @@ public class Car : MonoBehaviour {
     {
         return new Vector2(loc.X + 0.5f, loc.Y + 0.5f);
     }
-	
+
 	// Update is called once per frame
 	void Update () {
-        
+
         if (path == null)
         {
             GetPath();
@@ -124,7 +131,7 @@ public class Car : MonoBehaviour {
             transform.position.z);
 
         var trafficLights = GameObject.FindWithTag("TrafficLightTile").GetComponent<TrafficLightMap>();
-        
+
         var lightState = trafficLights.GetTrafficLightStatus(predictedPosition);
 
         bool isHorizontal = currentDirection.x > currentDirection.y;
