@@ -20,18 +20,25 @@ public class Car : MonoBehaviour {
 
     bool HasCollided = false;
     Position destination;
+    bool assignedDestination;
     Vector2 target;
     Position[] path;
     int waypoint;
 
 	// Use this for initialization
-	void Start ()
+	void Start()
     {
-    }
+        GameObject controller = GameObject.FindWithTag("GameController");
 
-    public void SetDestination(Position dest)
-    {
-        this.destination = dest;
+        if (controller != null)
+        {
+            var controllerScript = controller.GetComponent<GameController>();
+            if (controllerScript != null)
+            {
+                var destVect = controllerScript.GetDestinationPoint();
+                this.destination = new Position((int)destVect.x, (int)destVect.y);
+            }
+        }
     }
 
     private void GetPath()

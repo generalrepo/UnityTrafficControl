@@ -48,6 +48,11 @@ public class GameController : MonoBehaviour
         lastSpawn = DateTime.Now;
     }
 
+    public Vector3 GetDestinationPoint()
+    {
+        return despawnPoints[UnityEngine.Random.Range(0, despawnPoints.Count)];
+    }
+
     void SpawnCars()
     {
         Vector3 spawnPosition = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Count)];
@@ -56,13 +61,13 @@ public class GameController : MonoBehaviour
         Quaternion spawnRotation = Quaternion.identity;
         Instantiate(car, spawnPosition, spawnRotation);
         Vector3Int destination = despawnPoints[UnityEngine.Random.Range(0, despawnPoints.Count)];
-        car.SetDestination(new Position(destination.x, destination.y));
+        //car.SetDestination(new Position(destination.x, destination.y));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (DateTime.Now - this.lastSpawn > TimeSpan.FromSeconds(5))
+        if (DateTime.Now - this.lastSpawn > TimeSpan.FromSeconds(2))
         {
             SpawnCars();
             this.lastSpawn = DateTime.Now;

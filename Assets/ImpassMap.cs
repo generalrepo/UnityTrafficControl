@@ -68,13 +68,6 @@ public class ImpassMap : MonoBehaviour {
                 {
                     grid.SetCellCost(new Position(x - cb.xMin, y - cb.yMin), 1.0f);
                 }
-
-                /*
-                if (tile == null)
-                {
-                    grid.BlockCell(new Position(x - cb.xMin, y - cb.yMin));
-                }
-                */
             }
         }
 
