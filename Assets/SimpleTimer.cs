@@ -19,6 +19,7 @@ public class SimpleTimer : MonoBehaviour
     {
         isRacing = true;
         txt = GetComponent<Text>();
+
     }
 
     void Update()
