@@ -3,4 +3,4 @@ Temp/*
 /*.sln
 .vs/*
 obj/*
-/*.csproj
+*.csproj

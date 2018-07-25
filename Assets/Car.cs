@@ -36,20 +36,24 @@ public class Car : MonoBehaviour {
     private void GetPath()
     {
         GameObject tileMap = GameObject.FindWithTag("RoadTile");
-        ImpassMap impassMap = tileMap.GetComponent<ImpassMap>();
-        path = impassMap.GetPath(new Position((int)(transform.position.x - 0.5f), (int)(transform.position.y - 0.5f)), destination);
-        waypoint = 0;
-        target = PositionToVector2D(path[waypoint]);
+
+        if (tileMap != null)
+        {
+            ImpassMap impassMap = tileMap.GetComponent<ImpassMap>();
+            path = impassMap.GetPath(new Position((int)(transform.position.x - 0.5f), (int)(transform.position.y - 0.5f)), new Position(5, -1));
+            waypoint = 0;
+            target = PositionToVector2D(path[waypoint]);
+        }
     }
 
     Vector2 PositionToVector2D(Position loc)
     {
         return new Vector2(loc.X + 0.5f, loc.Y + 0.5f);
     }
-	
+
 	// Update is called once per frame
 	void Update () {
-        
+
         if (path == null)
         {
             GetPath();
@@ -126,7 +130,7 @@ public class Car : MonoBehaviour {
             transform.position.z);
 
         var trafficLights = GameObject.FindWithTag("TrafficLightTile").GetComponent<TrafficLightMap>();
-        
+
         var lightState = trafficLights.GetTrafficLightStatus(predictedPosition);
 
         if (lightState == null || lightState == TrafficLightMap.TrafficLightState.Green)
