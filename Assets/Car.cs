@@ -4,6 +4,7 @@ using UnityEngine;
 using Assets;
 using RoyT.AStar;
 using UnityEngine.Tilemaps;
+using System;
 
 public class Car : MonoBehaviour {
 
@@ -134,7 +135,7 @@ public class Car : MonoBehaviour {
 
         var lightState = trafficLights.GetTrafficLightStatus(predictedPosition);
 
-        bool isHorizontal = currentDirection.x > currentDirection.y;
+        bool isHorizontal = Math.Abs(currentDirection.x) > Math.Abs(currentDirection.y);
         if (lightState == null
             || (!isHorizontal && lightState == TrafficLightMap.TrafficLightState.Green)
             || (isHorizontal && lightState == TrafficLightMap.TrafficLightState.Red))
