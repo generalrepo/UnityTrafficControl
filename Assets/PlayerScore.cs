@@ -14,8 +14,13 @@ public class PlayerScore : MonoBehaviour {
         UpdateScore();
 	}
 	
+    public void AddScore(int NewScoreValue)
+    {
+        score += NewScoreValue;
+        UpdateScore();
+    }
 	// Update is called once per frame
 	void UpdateScore () {
-        scoreText = "Score: " + score;
+        score = score + 5;
 	}
 }
