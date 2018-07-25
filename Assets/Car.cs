@@ -117,16 +117,21 @@ public class Car : MonoBehaviour {
         Vector2 currentDirection = Util.DegreeToVector2(transform.eulerAngles.z + 90);
         Velocity = currentDirection.normalized * Speed;
 
+        const float stoppingDistanceFactor = 10.0f;
         var predictedPosition = new Vector3(
-            transform.position.x + 2 * Velocity.x,
-            transform.position.y + 2 * Velocity.y,
+            transform.position.x + stoppingDistanceFactor * Velocity.x,
+            transform.position.y + stoppingDistanceFactor * Velocity.y,
             transform.position.z);
 
         var trafficLights = GameObject.FindWithTag("TrafficLightTile").GetComponent<TrafficLightMap>();
         
         var lightState = trafficLights.GetTrafficLightStatus(predictedPosition);
 
-        if (lightState == null || lightState == TrafficLightMap.TrafficLightState.Green)
+        bool isHorizontal = currentDirection.x > currentDirection.y;
+        if (lightState == null
+            || (isHorizontal && lightState == TrafficLightMap.TrafficLightState.Green)
+            || (!isHorizontal && lightState == TrafficLightMap.TrafficLightState.Red))
+
         {
             transform.position = new Vector3(
                 transform.position.x + Velocity.x,
