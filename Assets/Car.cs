@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets;
 using RoyT.AStar;
+using UnityEngine.Tilemaps;
 
 public class Car : MonoBehaviour {
 
@@ -17,6 +18,7 @@ public class Car : MonoBehaviour {
     float Speed = 0.02f;
 
     bool HasCollided = false;
+    Position destination;
     Vector2 target;
     Position[] path;
     int waypoint;
@@ -24,13 +26,18 @@ public class Car : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        destination = new Position(3, 6);
+    }
+
+    public void SetDestination(Position position)
+    {
     }
 
     private void GetPath()
     {
         GameObject tileMap = GameObject.FindWithTag("RoadTile");
         ImpassMap impassMap = tileMap.GetComponent<ImpassMap>();
-        path = impassMap.GetPath(new Position((int)(transform.position.x - 0.5f), (int)(transform.position.y - 0.5f)), new Position(5, -1));
+        path = impassMap.GetPath(new Position((int)(transform.position.x - 0.5f), (int)(transform.position.y - 0.5f)), destination);
         waypoint = 0;
         target = PositionToVector2D(path[waypoint]);
     }
