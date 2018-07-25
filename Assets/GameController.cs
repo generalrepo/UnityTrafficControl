@@ -35,27 +35,9 @@ public class GameController : MonoBehaviour
     void SpawnCars(BoundsInt cb)
     {
         Vector3 spawnPosition = spawnPoints[Random.Range(0, spawnPoints.Count)];
-        Quaternion spawnRotation = new Quaternion();
-        if (spawnPosition.x == cb.xMin)
-        {
-            spawnRotation.SetLookRotation(new Vector3(1, 0));
-        }
-        else if (spawnPosition.x == cb.xMax)
-        {
-            spawnRotation.SetLookRotation(new Vector3(-1, 0));
-        }
-        else if (spawnPosition.y == cb.yMin)
-        {
-            spawnRotation.SetLookRotation(new Vector3(0, 1));
-        }
-        else if (spawnPosition.y == cb.yMax)
-        {
-            spawnRotation.SetLookRotation(new Vector3(0, -1));
-        }
-        else
-        {
-            spawnRotation = Quaternion.identity;
-        }
+        spawnPosition.x += 0.5f;
+        spawnPosition.y += 0.5f;
+        Quaternion spawnRotation = Quaternion.identity;
         Instantiate(car, spawnPosition, spawnRotation);
     }
 

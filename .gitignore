@@ -3,3 +3,4 @@ Temp/*
 *.sln
 .vs/*
 obj/*
+Assembly-CSharp.csproj
