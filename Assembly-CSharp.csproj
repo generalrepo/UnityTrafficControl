@@ -62,6 +62,7 @@
      <Compile Include="Assets\AStar\PathFinder.Debug.cs" />
      <Compile Include="Assets\AStar\Position.cs" />
      <Compile Include="Assets\Car.cs" />
+     <Compile Include="Assets\GameController.cs" />
      <Compile Include="Assets\ImpassMap.cs" />
      <Compile Include="Assets\LightTimer.cs" />
      <Compile Include="Assets\PlayerScore.cs" />
