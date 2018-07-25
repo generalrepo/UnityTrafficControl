@@ -6,8 +6,6 @@ public class SimpleTimer : MonoBehaviour
 {
     public bool isRacing;
     private string testValue;
-    public int scoreValue;
-    public PlayerScore playerScore;
     Text txt;
 
 
@@ -21,6 +19,7 @@ public class SimpleTimer : MonoBehaviour
     {
         isRacing = true;
         txt = GetComponent<Text>();
+
     }
 
     void Update()
@@ -30,6 +29,5 @@ public class SimpleTimer : MonoBehaviour
             testValue = Time.timeSinceLevelLoad.ToString("#");
             txt.text = testValue;
         }
-        playerScore.AddScore (scoreValue);
     }
 }

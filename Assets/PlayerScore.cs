@@ -1,26 +1,33 @@
-﻿using System;
+﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerScore : MonoBehaviour {
+public class PlayerScore : MonoBehaviour
+{
+    public bool isRacing;
+    private int testValue;
+    Text txt;
 
-    public string scoreText;
-    public int score;
 
-    // Use this for initialization
-	void Start () {
-        score = 0;
-        UpdateScore();
-	}
-	
-    public void AddScore(int NewScoreValue)
+    void Awake()
     {
-        score += NewScoreValue;
-        UpdateScore();
+        txt = GetComponent<Text>();
+
     }
-	// Update is called once per frame
-	void UpdateScore () {
-        score = score + 5;
-	}
+
+    void Start()
+    {
+        isRacing = true;
+        txt = GetComponent<Text>();
+
+    }
+
+    void Update()
+    {
+        if (isRacing)
+        {
+            testValue = testValue + 5;
+            txt.text = testValue.ToString();
+        }
+    }
 }
