@@ -124,7 +124,7 @@ public class Car : MonoBehaviour {
         Vector2 currentDirection = Util.DegreeToVector2(transform.eulerAngles.z + 90);
         Velocity = currentDirection.normalized * Speed;
 
-        const float stoppingDistanceFactor = 10.0f;
+        const float stoppingDistanceFactor = 20.0f;
         var predictedPosition = new Vector3(
             transform.position.x + stoppingDistanceFactor * Velocity.x,
             transform.position.y + stoppingDistanceFactor * Velocity.y,
@@ -136,8 +136,8 @@ public class Car : MonoBehaviour {
 
         bool isHorizontal = currentDirection.x > currentDirection.y;
         if (lightState == null
-            || (isHorizontal && lightState == TrafficLightMap.TrafficLightState.Green)
-            || (!isHorizontal && lightState == TrafficLightMap.TrafficLightState.Red))
+            || (!isHorizontal && lightState == TrafficLightMap.TrafficLightState.Green)
+            || (isHorizontal && lightState == TrafficLightMap.TrafficLightState.Red))
 
         {
             transform.position = new Vector3(
